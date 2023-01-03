@@ -39,8 +39,9 @@ namespace IT100_TicTacToe
                 coords = Array.ConvertAll(Console.ReadLine().Trim().Split(), Int32.Parse);
             }
             
-            //Remove this line later. There should not be a print here. It has been provided to show you what the method did.
+            //Remove these lines later. There should not be a print here. They have been provided to show you what the method did.
             Console.WriteLine($"Player typed in [{coords[0]}, {coords[1]}]");
+            Console.WriteLine($"For an array, the index would be [{coords[0] - 1}, {coords[1] - 1}]");
         }
 
         public static void PrintBoard()
