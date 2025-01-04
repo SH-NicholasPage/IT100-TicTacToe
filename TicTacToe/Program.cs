@@ -51,23 +51,30 @@ namespace TicTacToe
 
             return diagonalWin;
         }
-
+        
         public static void PrintBoard(char[][] board)
         {
-            for (int i = 0; i < BOARD_SIZE; i++)
+            String horizontalLine = " ";
+            for (int j = 0; j < BOARD_SIZE; j++)
             {
-                Console.Write(" " + (i + 1));
+                horizontalLine += "---+";
             }
-
-            Console.Write(Environment.NewLine);
-
+            horizontalLine = horizontalLine[..^1];
+        
             for (int i = 0; i < BOARD_SIZE; i++)
             {
-                Console.WriteLine((i + 1) + String.Join('|', board[i]));
-
+                Console.Write("  " + (i + 1) + " ");
+            }
+        
+            Console.Write(Environment.NewLine);
+        
+            for (int i = 0; i < BOARD_SIZE; i++)
+            {
+                Console.WriteLine((i + 1) + " " + String.Join(" | ", board[i]));
+        
                 if (i < BOARD_SIZE - 1)
                 {
-                    Console.WriteLine(" " + new String('-', BOARD_SIZE * 2 - 1));
+                    Console.WriteLine(horizontalLine);
                 }
             }
         }
