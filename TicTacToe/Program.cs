@@ -3,79 +3,78 @@
  * South Hills Username: [YOUR SOUTH HILLS USERNAME HERE]
  */
 
-namespace TicTacToe
+namespace TicTacToe;
+
+public class Program
 {
-    public class Program
+    public const int BOARD_SIZE = 3;
+    public static char[][] board = new char[BOARD_SIZE][];
+
+    public static void Main()
     {
-        public const int BOARD_SIZE = 3;
-        public static char[][] board = new char[BOARD_SIZE][];
+        //TODO
+    }
 
-        public static void Main()
+    public static bool IsWinner(char[][] board)
+    {
+        // Check horizontals
+        //TODO
+
+        // Check verticals
+        //TODO
+
+        // Check diagonals
+        bool diagonalWin = true;
+        char mainDiagonalFirst = board[0][0];
+
+        for (int i = 1; i < BOARD_SIZE; i++)
         {
-            //TODO
+            if (board[i][i] == ' ' || board[i][i] != mainDiagonalFirst)
+            {
+                diagonalWin = false;
+                break;
+            }
         }
 
-        public static bool IsWinner(char[][] board)
+        if (diagonalWin) return true;
+        diagonalWin = true;
+
+        char antiDiagonalFirst = board[0][BOARD_SIZE - 1];
+        for (int i = BOARD_SIZE - 2; i >= 0; i--)
         {
-            // Check horizontals
-            //TODO
-
-            // Check verticals
-            //TODO
-
-            // Check diagonals
-            bool diagonalWin = true;
-            char mainDiagonalFirst = board[0][0];
-
-            for (int i = 1; i < BOARD_SIZE; i++)
+            if (board[BOARD_SIZE - i - 1][i] == ' ' || board[BOARD_SIZE - i - 1][i] != antiDiagonalFirst)
             {
-                if (board[i][i] == ' ' || board[i][i] != mainDiagonalFirst)
-                {
-                    diagonalWin = false;
-                    break;
-                }
+                diagonalWin = false;
+                break;
             }
-
-            if (diagonalWin) return true;
-            diagonalWin = true;
-
-            char antiDiagonalFirst = board[0][BOARD_SIZE - 1];
-            for (int i = BOARD_SIZE - 2; i >= 0; i--)
-            {
-                if (board[BOARD_SIZE - i - 1][i] == ' ' || board[BOARD_SIZE - i - 1][i] != antiDiagonalFirst)
-                {
-                    diagonalWin = false;
-                    break;
-                }
-            }
-
-            return diagonalWin;
         }
-        
-        public static void PrintBoard(char[][] board)
+
+        return diagonalWin;
+    }
+    
+    public static void PrintBoard(char[][] board)
+    {
+        String horizontalLine = " ";
+        for (int j = 0; j < BOARD_SIZE; j++)
         {
-            String horizontalLine = " ";
-            for (int j = 0; j < BOARD_SIZE; j++)
+            horizontalLine += "---+";
+        }
+        horizontalLine = horizontalLine[..^1];
+    
+        for (int i = 0; i < BOARD_SIZE; i++)
+        {
+            Console.Write("  " + (i + 1) + " ");
+        }
+    
+        Console.Write(Environment.NewLine);
+    
+        for (int i = 0; i < BOARD_SIZE; i++)
+        {
+            Console.WriteLine((i + 1) + " " + String.Join(" | ", board[i]));
+    
+            if (i < BOARD_SIZE - 1)
             {
-                horizontalLine += "---+";
-            }
-            horizontalLine = horizontalLine[..^1];
-        
-            for (int i = 0; i < BOARD_SIZE; i++)
-            {
-                Console.Write("  " + (i + 1) + " ");
-            }
-        
-            Console.Write(Environment.NewLine);
-        
-            for (int i = 0; i < BOARD_SIZE; i++)
-            {
-                Console.WriteLine((i + 1) + " " + String.Join(" | ", board[i]));
-        
-                if (i < BOARD_SIZE - 1)
-                {
-                    Console.WriteLine(horizontalLine);
-                }
+                Console.WriteLine(horizontalLine);
             }
         }
     }
